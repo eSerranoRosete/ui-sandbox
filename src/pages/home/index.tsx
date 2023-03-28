@@ -24,10 +24,7 @@ const tabs = [
   },
 ];
 
-interface IFProps {
-  children: React.ReactNode;
-}
-const HomePage = ({ children }: IFProps) => {
+const HomePage = () => {
   return (
     <PageLayout>
       <PageHeader
@@ -46,7 +43,7 @@ const HomePage = ({ children }: IFProps) => {
           </>
         }
       />
-      <div className="my-10 grid grid-cols-3 gap-10">
+      <div className="my-10 grid grid-cols-1 gap-5 lg:grid-cols-3 lg:gap-10">
         <StatCard
           title="Total members"
           value="1,620"

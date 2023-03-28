@@ -6,12 +6,8 @@ import { useAppState, useAppActions } from "~/context/context";
 import { UserDropdown } from "./UserDropdown";
 
 const navItems = [
-  { label: "Home", href: "/" },
-  { label: "Customers", href: "/" },
-  { label: "Projects", href: "/" },
-  { label: "Tasks", href: "/" },
-  { label: "Reporting", href: "/" },
-  { label: "Settings", href: "/settings" },
+  { label: "Home", href: "/home" },
+  { label: "Users", href: "/home" },
 ];
 
 export const Navigation = () => {

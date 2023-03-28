@@ -1,7 +1,7 @@
 import { PageHeader } from "~/components/layout/PageHeader";
 import { PageLayout } from "~/components/layout/PageLayout";
 
-const Settings = () => {
+const SettingsPage = () => {
   return (
     <PageLayout>
       <PageHeader title="Account Settings" />
@@ -9,4 +9,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default SettingsPage;

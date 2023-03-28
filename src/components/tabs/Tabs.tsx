@@ -26,7 +26,7 @@ export const Tabs = ({ tabs }: IFProps) => {
           </Tab>
         ))}
       </Tab.List>
-      <Tab.Panels className="mt-2 w-full bg-red-600">
+      <Tab.Panels className="mt-2 w-full">
         {tabs.map((tab, i) => (
           <Tab.Panel key={i}>{tab.content}</Tab.Panel>
         ))}

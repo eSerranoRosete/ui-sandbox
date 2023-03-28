@@ -7,7 +7,7 @@ const config = {
     extend: {
       colors: {
         ...colors,
-        primary: "#161b33",
+        primary: "#0f172a",
         success: "#16a34a",
         muted: "#78716c",
       },

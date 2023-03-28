@@ -5,11 +5,14 @@ import {
 } from "@heroicons/react/24/outline";
 import { Fragment, useState } from "react";
 import classNames from "classnames";
-import Link from "next/link";
+
 import { Button } from "../buttons/Button";
+import Link from "next/link";
+import { useAuth, useUser } from "@clerk/nextjs";
 
 export const UserDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { signOut } = useAuth();
 
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -28,7 +31,21 @@ export const UserDropdown = () => {
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="px-1 py-1 ">
+          <div className="px-1 py-1">
+            <Menu.Item>
+              {({ active }) => (
+                <Link
+                  href={"/account"}
+                  className={classNames(
+                    "group flex w-full items-center gap-2 rounded-md px-2 py-2 text-sm",
+                    active ? "bg-primary text-white" : "text-gray-900"
+                  )}
+                >
+                  <Cog8ToothIcon className="w-4" />
+                  Account Settings
+                </Link>
+              )}
+            </Menu.Item>
             <Menu.Item>
               {({ active }) => (
                 <button
@@ -89,7 +106,7 @@ export const UserDropdown = () => {
                   </div>
 
                   <div className="mt-4">
-                    <Button onClick={() => setIsOpen(false)}>Sign out</Button>
+                    <Button onClick={() => signOut()}>Sign out</Button>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
