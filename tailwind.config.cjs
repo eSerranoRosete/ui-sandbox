@@ -10,6 +10,7 @@ const config = {
         primary: "#0f172a",
         success: "#16a34a",
         muted: "#78716c",
+        danger: "#e11d48",
       },
     },
   },

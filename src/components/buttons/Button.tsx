@@ -4,20 +4,25 @@ import classNames from "classnames";
 interface IFProps extends HTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary";
   size?: "xs" | "sm" | "md" | "lg";
-  icon?: React.ReactNode;
+  iconStart?: React.ReactNode;
+  iconEnd?: React.ReactNode;
+  type?: "button" | "submit" | "reset";
 }
 export const Button = ({
   children,
   variant = "primary",
   size = "sm",
-  icon,
+  iconStart,
+  iconEnd,
+  type,
   ...props
 }: IFProps) => {
   return (
     <button
+      type={type}
       {...props}
       className={classNames(
-        "inline-flex items-center justify-center gap-2 rounded-md border px-4 py-2 font-medium focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-2",
+        "inline-flex items-center justify-center gap-2 rounded-md border px-4 py-2 font-medium antialiased focus:outline-none focus-visible:ring-1 focus-visible:ring-offset-2",
         variant === "primary" &&
           "border-transparent bg-primary text-white hover:bg-primary/90 focus-visible:ring-primary",
         variant === "secondary" &&
@@ -28,8 +33,9 @@ export const Button = ({
         size === "lg" && "text-lg"
       )}
     >
-      {icon && <span className="w-5">{icon}</span>}
+      {iconStart && <span className="w-5">{iconStart}</span>}
       {children}
+      {iconEnd && <span className="w-5">{iconEnd}</span>}
     </button>
   );
 };

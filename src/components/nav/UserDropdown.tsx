@@ -1,4 +1,4 @@
-import { Dialog, Menu, Transition } from "@headlessui/react";
+import { Menu, Transition } from "@headlessui/react";
 import {
   ArrowRightOnRectangleIcon,
   Cog8ToothIcon,
@@ -9,10 +9,13 @@ import classNames from "classnames";
 import { Button } from "../buttons/Button";
 import Link from "next/link";
 import { useAuth } from "@clerk/nextjs";
+import { Dialog } from "../dialog/Dialog";
+import { useAppActions } from "~/context/context";
 
 export const UserDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { signOut } = useAuth();
+  const actions = useAppActions();
 
   return (
     <Menu as="div" className="relative inline-block text-left">
@@ -35,6 +38,7 @@ export const UserDropdown = () => {
             <Menu.Item>
               {({ active }) => (
                 <Link
+                  onClick={() => actions.setCurrentPage("account")}
                   href={"/account"}
                   className={classNames(
                     "group flex w-full items-center gap-2 rounded-md px-2 py-2 text-sm",
@@ -63,57 +67,17 @@ export const UserDropdown = () => {
           </div>
         </Menu.Items>
       </Transition>
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog
-          as="div"
-          className="relative z-10"
-          onClose={() => setIsOpen(false)}
-        >
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
-          </Transition.Child>
-
-          <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-lg bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
-                  >
-                    Are you sure you want to sign out?
-                  </Dialog.Title>
-                  <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      Signing out will end your current session.
-                    </p>
-                  </div>
-
-                  <div className="mt-4">
-                    <Button onClick={() => signOut()}>Sign out</Button>
-                  </div>
-                </Dialog.Panel>
-              </Transition.Child>
-            </div>
-          </div>
-        </Dialog>
-      </Transition>
+      <Dialog
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        title="Are you sure you want to sign out?"
+        desc="Signing out will end your current session."
+        maxWidth="xl"
+      >
+        <div className="mt-4">
+          <Button onClick={() => signOut()}>Sign out</Button>
+        </div>
+      </Dialog>
     </Menu>
   );
 };
