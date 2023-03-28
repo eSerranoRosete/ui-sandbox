@@ -4,7 +4,7 @@ export interface IFAppState {
 }
 
 interface AppState {
-  currentPage: String;
+  currentPage: string;
 }
 
 export type ACTION_TYPE = { type: "SET_CURRENT_PAGE"; currentPage: string };
