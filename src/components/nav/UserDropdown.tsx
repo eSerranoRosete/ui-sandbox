@@ -8,7 +8,7 @@ import classNames from "classnames";
 
 import { Button } from "../buttons/Button";
 import Link from "next/link";
-import { useAuth, useUser } from "@clerk/nextjs";
+import { useAuth } from "@clerk/nextjs";
 
 export const UserDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);

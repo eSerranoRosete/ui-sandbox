@@ -1,11 +1,11 @@
 import {
   createContext,
-  Dispatch,
+  type Dispatch,
   useContext,
   useMemo,
   useReducer,
 } from "react";
-import { type IFAppState, appReducer, ACTION_TYPE } from "./reducer";
+import { type IFAppState, appReducer, type ACTION_TYPE } from "./reducer";
 
 type Actions = Dispatch<ACTION_TYPE>;
 type ActionsContextType = ReturnType<typeof actions>;
