@@ -11,6 +11,7 @@ const config = {
         success: "#16a34a",
         muted: "#78716c",
         danger: "#e11d48",
+        accent: "#D9F368",
       },
     },
   },

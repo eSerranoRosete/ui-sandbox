@@ -1,7 +1,4 @@
-import {
-  ArrowSmallUpIcon,
-  ArrowSmallDownIcon,
-} from "@heroicons/react/24/outline";
+import { ArrowUp, ArrowDown } from "lucide-react";
 
 interface IFProps {
   title: string;
@@ -16,20 +13,16 @@ export const StatCard = ({
   statLabelIcon,
 }: IFProps) => {
   return (
-    <div className="group/card cursor-pointer rounded-lg border border-stone-300 px-6 py-8 transition-colors duration-150 hover:bg-primary hover:text-white">
+    <div className="group/card cursor-pointer rounded-lg border border-stone-300 px-6 py-8 antialiased transition-colors duration-150 hover:bg-primary hover:text-white">
       <h6 className="mb-2 text-sm font-medium text-stone-500 group-hover/card:text-stone-200">
         {title}
       </h6>
       <div className="flex items-baseline">
-        <p className="flex grow text-4xl font-medium">{value}</p>
+        <p className="flex grow text-3xl font-medium">{value}</p>
         {statLabel && (
-          <span className="flex rounded-full border border-primary px-3 py-0.5 text-sm font-semibold group-hover/card:border-white">
-            {statLabelIcon === "up" && (
-              <ArrowSmallUpIcon className="mr-1 w-3" />
-            )}
-            {statLabelIcon === "down" && (
-              <ArrowSmallDownIcon className="mr-1 w-3" />
-            )}
+          <span className="flex items-center rounded-full border border-primary bg-accent px-3 py-0.5 text-sm font-semibold group-hover/card:text-black">
+            {statLabelIcon === "up" && <ArrowUp className="mr-1 w-3" />}
+            {statLabelIcon === "down" && <ArrowDown className="mr-1 w-3" />}
             {statLabel}
           </span>
         )}

@@ -1,11 +1,12 @@
 import type { HTMLAttributes } from "react";
 import classNames from "classnames";
+import React from "react";
 
-interface IFProps extends HTMLAttributes<HTMLButtonElement> {
+export interface IFProps extends HTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary";
   size?: "xs" | "sm" | "md" | "lg";
-  iconStart?: React.ReactNode;
-  iconEnd?: React.ReactNode;
+  iconStart?: React.ReactElement;
+  iconEnd?: React.ReactElement;
   type?: "button" | "submit" | "reset";
 }
 export const Button = ({
@@ -33,9 +34,9 @@ export const Button = ({
         size === "lg" && "text-lg"
       )}
     >
-      {iconStart && <span className="w-5">{iconStart}</span>}
+      {iconStart && React.cloneElement(iconStart, { className: "w-5" })}
       {children}
-      {iconEnd && <span className="w-5">{iconEnd}</span>}
+      {iconEnd && React.cloneElement(iconEnd, { className: "w-5" })}
     </button>
   );
 };

@@ -12,7 +12,7 @@ export const NavButton = ({ label, href, active, onClick }: IFProps) => {
     <Link
       className={clsx(
         "rounded-md px-4 py-2 text-sm font-medium transition-all duration-100 ",
-        active ? "bg-primary text-white" : "hover:bg-stone-100"
+        active ? "bg-accent" : "hover:bg-stone-100"
       )}
       onClick={onClick}
       href={href}

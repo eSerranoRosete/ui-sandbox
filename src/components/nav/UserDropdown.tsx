@@ -1,16 +1,14 @@
 import { Menu, Transition } from "@headlessui/react";
-import {
-  ArrowRightOnRectangleIcon,
-  Cog8ToothIcon,
-} from "@heroicons/react/24/outline";
+
 import { Fragment, useState } from "react";
 import classNames from "classnames";
 
-import { Button } from "../buttons/Button";
+import { Button } from "../ui/Button";
 import Link from "next/link";
 import { useAuth } from "@clerk/nextjs";
-import { Dialog } from "../dialog/Dialog";
+import { Dialog } from "~/components/ui/Dialog";
 import { useAppActions } from "~/context/context";
+import { Settings, LogOut } from "lucide-react";
 
 export const UserDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,10 +40,10 @@ export const UserDropdown = () => {
                   href={"/account"}
                   className={classNames(
                     "group flex w-full items-center gap-2 rounded-md px-2 py-2 text-sm",
-                    active ? "bg-primary text-white" : "text-gray-900"
+                    active ? "bg-accent" : "text-gray-900"
                   )}
                 >
-                  <Cog8ToothIcon className="w-4" />
+                  <Settings className="w-4" />
                   Account Settings
                 </Link>
               )}
@@ -56,10 +54,10 @@ export const UserDropdown = () => {
                   onClick={() => setIsOpen(true)}
                   className={classNames(
                     "group flex w-full items-center gap-2 rounded-md px-2 py-2 text-sm",
-                    active ? "bg-primary text-white" : "text-gray-900"
+                    active ? "bg-accent" : "text-gray-900"
                   )}
                 >
-                  <ArrowRightOnRectangleIcon className="w-4" />
+                  <LogOut className="w-4" />
                   Sign Out
                 </button>
               )}

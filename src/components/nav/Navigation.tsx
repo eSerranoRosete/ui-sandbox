@@ -1,43 +1,46 @@
 "use client";
 
-import { NavButton } from "./NavButton";
+import { NavButton } from "./../ui/NavButton";
 
-import { useAppState, useAppActions } from "~/context/context";
+import { useAppActions } from "~/context/context";
 import { UserDropdown } from "./UserDropdown";
 import Link from "next/link";
 import { CubeIcon } from "@heroicons/react/24/solid";
 
-const navItems = [
-  { label: "Home", href: "/home" },
-  { label: "Users", href: "/home" },
-];
+import { config } from "~/config/AppConfig";
+import { useRouter } from "next/router";
 
 export const Navigation = () => {
-  const state = useAppState();
+  const router = useRouter();
+  const currentPage = router.pathname.split("/")[1];
 
   const actions = useAppActions();
 
-  const { currentPage } = state.app;
-
   return (
     <div className="container m-auto p-4">
-      <nav className="flex items-center gap-20">
-        <Link href="/home" className="flex items-center gap-2 font-semibold">
+      <nav className="flex items-center justify-between lg:justify-start">
+        <Link
+          onClick={() => actions.setCurrentPage("Home")}
+          href="/dashboard"
+          className="flex items-center gap-2 font-semibold lg:mr-20"
+        >
           <CubeIcon className="w-6" />
           <span>Inshare</span>
         </Link>
-        <div className="flex grow items-center">
-          {navItems.map((item, i) => (
+        <div className="flex items-center lg:grow">
+          {config.navigation.map((item, i) => (
             <NavButton
-              active={currentPage === item.label}
-              onClick={() => actions.setCurrentPage(item.label)}
+              active={currentPage === item.alias}
+              onClick={() => actions.setCurrentPage(item.alias)}
               key={i}
-              label={item.label}
-              href={item.href}
+              label={item.name}
+              href={item.path}
             />
           ))}
         </div>
-        <UserDropdown />
+        <div className="flex items-center gap-6">
+          <UserDropdown />
+        </div>
       </nav>
     </div>
   );
